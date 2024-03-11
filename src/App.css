@@ -16,8 +16,7 @@ body {
 .container {
   margin: 0 auto;
   padding: 2.5rem 2rem;
-  width: 100%;
-  max-width: 350px;
+  width: 350px;
   height: 100%;
   background-color: rgba(136, 136, 136, 0.036);
   border-radius: 10px;
@@ -26,7 +25,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: 1.2s ease-in;
 }
 
 .holaform {
@@ -93,4 +91,10 @@ button:hover {
   width: 2rem;
   height: 2rem;
   margin: 0.5rem;
+}
+
+@media screen and (max-width: 350px) {
+  .container {
+    width: 100%;
+  }
 }

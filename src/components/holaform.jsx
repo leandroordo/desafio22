@@ -2,26 +2,24 @@ import { useState } from "react";
 import HolaMensaje from "./holamensaje";
 
 const HolaForm = () => {
-  const [formData, setFormData] = useState({ nombre: "", edad: 0 });
+  const [nombre, setNombre] = useState("");
+  const [edad, setEdad] = useState(0);
   const [showMessage, setShowMessage] = useState(false);
 
   const userNameChanged = (e) => {
     console.log(e.currentTarget.value);
-    setFormData({ ...formData, nombre: e.currentTarget.value });
+    setNombre(e.currentTarget.value);
     setShowMessage(false);
   };
 
   const userAgeChanged = (e) => {
-    setFormData({
-      ...formData,
-      edad: Math.abs(parseInt(e.currentTarget.value)),
-    });
+    setEdad(Math.abs(parseInt(e.currentTarget.value)));
     setShowMessage(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.nombre.trim() !== "") {
+    if (nombre.trim() !== "") {
       setShowMessage(true);
     }
   };
@@ -36,7 +34,7 @@ const HolaForm = () => {
           placeholder="Nombre"
           required
           className="holainput"
-          value={formData.nombre}
+          value={nombre}
           onChange={userNameChanged}
         ></input>
         <input
@@ -45,17 +43,17 @@ const HolaForm = () => {
           placeholder="Edad"
           required
           className="holainput"
-          value={formData.edad}
+          value={edad}
           onChange={userAgeChanged}
         ></input>
         <button type="submit">Entrar</button>
         {showMessage && (
           <HolaMensaje
-            type={formData.edad < 18 ? "denied" : "ok"}
+            type={edad < 18 ? "denied" : "ok"}
             messagge={
-              formData.edad < 18
-                ? `Hola ${formData.nombre.trim()}, eres muy joven para usar esta aplicación.`
-                : `Bienvenido ${formData.nombre.trim()}, gracias por usar nuestra aplicación.`
+              edad < 18
+                ? `Hola ${nombre.trim()}, eres muy joven para usar esta aplicación.`
+                : `Bienvenido ${nombre.trim()}, gracias por usar nuestra aplicación.`
             }
           />
         )}
